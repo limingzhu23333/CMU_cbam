@@ -183,5 +183,5 @@ if __name__ == "__main__":
     import torch
     from thop import profile
     from pytorch_model_summary import summary
-    m = CMU_CBAM_3D(in_chans=1, num_classes=4)
+    m = CMU_CBAM_3D(in_chans=3, num_classes=4)
  
