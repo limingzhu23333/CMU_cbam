@@ -10,7 +10,7 @@ import sys
 original_path = sys.path.copy()
 sys.path.append('../')#cause
 
-from networks.Unet_cbam_3D_before import Unet_CBAM_3D
+from networks.CMU_cbam_3D_before import CMU_CBAM_3D
 from src.dataloader.isbi2016_new3 import My3DDataset
 import numpy as np
 from torch.cuda.amp import autocast, GradScaler
@@ -19,7 +19,7 @@ from torch.cuda.amp import autocast, GradScaler
 
 def get_cfg():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='Unet_CBAM_3D')
+    parser.add_argument('--model', type=str, default='CMU_CBAM_3D')
     parser.add_argument('--gpu', type=str, default='0,1,2,3')
     parser.add_argument('--exp_name', type=str, default='test')
     parser.add_argument('--fold', type=str)
@@ -84,7 +84,7 @@ def get_model(args):
         model = UNet(in_chns=1,class_num=1)
     elif args.model == "UNet_CBAM":
         model = UNet_CBAM(in_chans=1, num_classes=1)
-    elif args.model == "Unet_CBAM_3D":
+    elif args.model == "CMU_CBAM_3D":
         model = CMU_CBAM_3D(in_chans=1, num_classes=1)
     elif args.model == "ResUNet":
         model = ResUnet(in_chans=1, num_classes=1)
