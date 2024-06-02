@@ -81,13 +81,13 @@ def get_model(args):
     elif args.model == "CMUNeXt-L":
         model = cmunext_l()
     elif args.model == "UNet":
-        model = UNet(in_chns=1,class_num=1)
+        model = UNet(in_chns=3,class_num=1)
     elif args.model == "UNet_CBAM":
-        model = UNet_CBAM(in_chans=1, num_classes=1)
+        model = UNet_CBAM(in_chans=3, num_classes=1)
     elif args.model == "CMU_CBAM_3D":
-        model = CMU_CBAM_3D(in_chans=1, num_classes=1)
+        model = CMU_CBAM_3D(in_chans=3, num_classes=1)
     elif args.model == "ResUNet":
-        model = ResUnet(in_chans=1, num_classes=1)
+        model = ResUnet(in_chans=3, num_classes=1)
     else:
         model = None
         print("model err")
