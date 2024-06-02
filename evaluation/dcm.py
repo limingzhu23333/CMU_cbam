@@ -22,7 +22,7 @@ import os
 
 
         overlay_image = ct_image.copy()
-        overlay_image[segmentation_image == 255] = [255, 255, 255]  # 将分割结果区域设置为红色
+        overlay_image[segmentation_image == 255] = [255, 255, 255]  # 
 
     # plt.figure(figsize=(10, 10))
     # plt.imshow(cv2.cvtColor(overlay_image, cv2.COLOR_BGR2RGB))
