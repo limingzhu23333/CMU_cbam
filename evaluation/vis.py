@@ -1,7 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 
-# 读取 CT 图像、真实标签图像和预测分割图像
+#
 # ct_image = cv2.imread('E:/avm61-100/nii/png/images2/077_142.png')
 ct_image = cv2.imread('F:/picture/png/098_2/098_2_169.png')
 true_label_image = cv2.imread('D:/jpg_seg/jpg_seg/src/label_segmentation_images/098_169.png', cv2.IMREAD_GRAYSCALE)
@@ -9,16 +9,16 @@ predicted_segmentation_image = cv2.imread('D:/jpg_seg/jpg_seg/src/predicted_segm
 
 overlay_image = ct_image.copy()
 
-overlay_image[true_label_image == 255] = [0, 0, 255]  # 将真实标签区域设置为红色
-# overlay_image[predicted_segmentation_image == 255] = [250, 140, 50]  # 将预测分割结果区域设置为蓝色
+overlay_image[true_label_image == 255] = [0, 0, 255]  # 
+# overlay_image[predicted_segmentation_image == 255] = [250, 140, 50]  #
 
-# 设置透明度
-alpha = 0.7 # 透明度为 0.5
+# 
+alpha = 0.7 # 
 
-# 叠加图像
+#
 overlay = cv2.addWeighted(ct_image, alpha, overlay_image, 1 - alpha, 0)
 
-# 可视化叠加后的图像
+# 
 plt.figure(figsize=(10, 10))
 # plt.imshow(cv2.cvtColor(ct_image, cv2.COLOR_BGR2RGBA))
 plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGRA2RGBA))
@@ -30,41 +30,41 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 读取 CT 图像、真实标签图像和预测分割图像
+# 
 ct_image = cv2.imread('F:/picture/png/075_3/075_3_150.png')
 true_label_image = cv2.imread('D:/jpg_seg/jpg_seg/src/label_segmentation_images/075_150.png', cv2.IMREAD_GRAYSCALE)
 predicted_segmentation_image = cv2.imread('D:/jpg_seg/jpg_seg/src/predicted_segmentation_images/075_150.png', cv2.IMREAD_GRAYSCALE)
 
-# 创建彩色叠加图像
+# 
 overlay_image = ct_image.copy()
 
-# 对背景图像应用直方图均衡化并略微降低亮度
+# 
 ct_image_hsv = cv2.cvtColor(ct_image, cv2.COLOR_BGR2HSV)
 ct_image_hsv[:, :, 2] = cv2.equalizeHist(ct_image_hsv[:, :, 2])
-ct_image_hsv[:, :, 2] = ct_image_hsv[:, :, 2] * 0.55  # 略微降低亮度
+ct_image_hsv[:, :, 2] = ct_image_hsv[:, :, 2] * 0.55  # 
 overlay_background = cv2.cvtColor(ct_image_hsv, cv2.COLOR_HSV2BGR)
 
-# 使用Canny边缘检测器检测CT图像的边缘
+# 
 edges = cv2.Canny(ct_image, 100, 200)
 
-# 将检测到的边缘作为掩码，从原始CT图像中提取感兴趣区域
+# 
 ct_image_filtered = cv2.bitwise_and(ct_image, ct_image, mask=edges)
 
-# 设置透明度
-alpha = 0.55 # 透明度为 0.7
+# 
+alpha = 0.55 # 
 
-# 叠加图像
+# 
 overlay = cv2.addWeighted(overlay_background, alpha, overlay_image, 1 - alpha, 0)
 
-# 计算两个图像的差值，并将差值图像设为黄色
+# 
 diff_image = cv2.absdiff(true_label_image, predicted_segmentation_image)
 diff_image = cv2.cvtColor(diff_image, cv2.COLOR_GRAY2BGR)
-diff_image[np.all(diff_image == [255, 255, 255], axis=-1)] = [0, 230, 230]  # 将差值图像设为黄色
+diff_image[np.all(diff_image == [255, 255, 255], axis=-1)] = [0, 230, 230]  # 
 
-# 将差值图像叠加到原始图像上
+# 
 overlay = cv2.addWeighted(overlay, 1, diff_image, 0.3, 0)
 
-# 可视化叠加后的图像
+# 
 plt.figure(figsize=(10, 10))
 plt.imshow(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB))
 plt.axis('off')
