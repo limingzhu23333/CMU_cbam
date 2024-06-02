@@ -108,7 +108,7 @@ class up_conv(nn.Module):
         return x
 
 class CMU_CBAM_3D(nn.Module): 
-    def __init__(self, in_chans=1, num_classes=4):
+    def __init__(self, in_chans=3, num_classes=4):
         super(CMU_CBAM_3D, self).__init__()
 
         self.Maxpool = nn.MaxPool3d(kernel_size=2, stride=2)
