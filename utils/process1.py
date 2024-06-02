@@ -14,7 +14,7 @@ def normalization(data):
     
     return scaled_data.astype(np.uint8)  # Convert back to uint8
 
-# numpy的归一化
+
 # def normalization(data):
 #     _range = np.max(data) - np.min(data)
 #     return (data - np.min(data)) / (_range)
@@ -67,7 +67,7 @@ from PIL import Image
 # p = list(range(1,21))
 p = [str(i).zfill(3) for i in range(31, 61)]
 # p = str(p).zfill(3)
-# 文件夹A下的所有照片
+
 for name in p:
     input_img_domainA = glob.glob(f"F:/avm31-60/nii/png/{name}_1/*.png")
     file_names = [os.path.basename(file) for file in input_img_domainA]
@@ -75,12 +75,12 @@ for name in p:
     def mkdir(path):
         folder = os.path.exists(path)
         
-        if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
-            os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
+        if not folder:  
+            os.makedirs(path)  
             print("--- create new folder...  ---")
         else:
             print("---  There is this folder!  ---")
-    mkdir(save_path)  # 调用函数
+    mkdir(save_path)  
 
     i = 0
     for file in file_names:
@@ -107,18 +107,12 @@ for name in p:
         # image = np.concatenate([img1, img2, img3], axis=2)
         # image = np.transpose(image,(2,0,1)) 
         # print(image.shape)
-        combined_image[:, :, 0] = img1[:, :, 0]  # 第一张图片的红色通道
-        combined_image[:, :, 1] = img2[:, :, 1]  # 第二张图片的绿色通道
-        combined_image[:, :, 2] = img3[:, :, 2]  # 第三张图片的蓝色通道
+        combined_image[:, :, 0] = img1[:, :, 0] 
+        combined_image[:, :, 1] = img2[:, :, 1]  
+        combined_image[:, :, 2] = img3[:, :, 2]  
 
-    # 将numpy数组转换为PIL图像
+  
         combined_image_pil = Image.fromarray(combined_image)
         combined_image_pil.save(os.path.join(save_path,file_name))
-# 保存合成后的图片
-    # combined_image_pil.save("combined_image.png")
-    # image = pd.concat([img1, img2, img3, img4, img5], axis=2)
-    # np.save(save_path+file_name,image)
-    # cv2.imwrite(save_path + file_name, image)
-    # cv2.imwrite(file_name, image)
-        i = i + 1
-    # print("The", i, "picture is currently being processed")
+
+ 
