@@ -1,1 +1,1 @@
-二阶段网络，脑部肿瘤分割
+two-stage deep learning(DL) method(2D/3D) for  brain tumor segmentation
